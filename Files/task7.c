@@ -1,9 +1,5 @@
-#include <stdio.h> 
-#include <stdlib.h> 
-#include <string.h> 
-#include <openssl/conf.h>
-#include <openssl/evp.h> 
-#include <openssl/err.h>
+#include <stdio.h> include <stdlib.h> include <string.h> include 
+#<openssl/conf.h> include <openssl/evp.h> include <openssl/err.h>
 
 int encrypt(unsigned char* plaintext, int plaintxt_len, unsigned char* key, unsigned char* iv, unsigned char* ciphertext);
 void stringToHex(char *, char *);
@@ -71,7 +67,7 @@ int len;
 int ciphertext_len;
 
 //Create & initialize the context
-if(!(ctx = EVP_CIPHER_CTX()))
+if(!(ctx = EVP_CIPHER_CTX_new()))
 puts("Error");
 /*
 Here we must make sure that we chose the right IV and key sizes 
@@ -92,7 +88,7 @@ puts("Error in final step");
 ciphertext_len += len;
 
 //Clean up
-free(ctx);
+EVP_CIPHER_CTX_free(ctx);
 return ciphertext_len;
 }
 
